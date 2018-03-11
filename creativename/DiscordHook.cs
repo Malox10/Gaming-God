@@ -58,9 +58,6 @@ namespace GamingGod {
                     await context.Channel.SendMessageAsync(result.ErrorReason);
                 }
             }
-            if (msg.HasCharPrefix('!', ref argPos)) {
-                var result = await _service.ExecuteAsync(context, argPos);
-            }
             if (Commands.deletionprocesses.Count > 0) {
                 var result = await _service.ExecuteAsync(context, argPos);
             }
@@ -95,7 +92,7 @@ namespace GamingGod {
                     name = name
                 };
                 Database.database.Add(name, x);
-                await DiscordHook.channel.SendMessageAsync("User : `" + name + "` created.");
+                await Context.Channel.SendMessageAsync("User : `" + name + "` created.");
             }
         }
 
