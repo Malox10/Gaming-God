@@ -9,6 +9,10 @@ namespace GamingGod {
         public string name = "";
         public string email = "";
         public string discordtag = "";
+        public ulong discordID = 0;
         public List<string> subjects;
+        public bool CommandCreated {
+            get => discordID == 0;
+        }
     }
 }
