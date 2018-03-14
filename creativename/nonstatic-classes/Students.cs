@@ -11,6 +11,7 @@ namespace GamingGod {
         public string discordtag = "";
         public ulong discordID = 0;
         public List<string> subjects;
+        public TimeTable timetable;
         public bool CommandCreated {
             get => discordID == 0;
         }

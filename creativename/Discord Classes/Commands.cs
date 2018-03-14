@@ -1,4 +1,5 @@
-﻿using Discord.Commands;
+﻿using Discord;
+using Discord.Commands;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -7,6 +8,20 @@ using System.Threading.Tasks;
 namespace GamingGod {
     public class Commands : ModuleBase<SocketCommandContext> {
         public static List<ConfirmationProcess> confirmationprocesses = new List<ConfirmationProcess>();
+
+        [Command("help")]
+        public async Task Help() {
+            var author = new EmbedAuthorBuilder {
+                Name = "help",
+                IconUrl = "https://avatars0.githubusercontent.com/u/32681550?s=460&v=4",
+                Url = "https://github.com/Malox10/Gaming-God"//shameless self advertising
+            };
+            var embed = new EmbedBuilder();
+            embed.WithAuthor(author);
+            embed.Description = "test";
+            await Context.Channel.SendMessageAsync("", false, embed);
+            //need to work on
+        }
 
         [Command("thischannel")]
         public async Task Thischannel() {
@@ -22,25 +37,25 @@ namespace GamingGod {
 
         [Command("adduser")]
         public async Task AddUser(string name) {
-            if (Database.database.ContainsKey(name)) {
+            if (Database.studentdatabase.ContainsKey(name)) {
                 await Context.Channel.SendMessageAsync("User does already exist.");
             }
             else {
                 var x = new Students {
                     name = name
                 };
-                Database.database.Add(name, x);
+                Database.studentdatabase.Add(name, x);
                 await Context.Channel.SendMessageAsync("User : `" + name + "` created.");
             }
         }
 
         [Command("deleteuser")]
         public async Task DeleteUser(string name) {
-            if (!Database.database.ContainsKey(name)) {
+            if (!Database.studentdatabase.ContainsKey(name)) {
                 await Context.Channel.SendMessageAsync("User does not exist.");
             }
             else {
-                if (Database.database[name].CommandCreated) {
+                if (Database.studentdatabase[name].CommandCreated) {
                     var x = new Random();
                     int rng = x.Next(1000, 9999);
                     var deletion = new ConfirmationProcess {
@@ -67,7 +82,7 @@ namespace GamingGod {
                         Int32.TryParse(number, out int y);
                         if (x.confirmation == y) {
                             confirmationprocesses.Remove(x);
-                            Database.database.Remove(x.name);
+                            Database.studentdatabase.Remove(x.name);
                             await Context.Channel.SendMessageAsync("User : `" + x.name + "` successfully deleted");
                         }
                         else if (number == "exit") {
@@ -76,6 +91,16 @@ namespace GamingGod {
                         }
                     }
                 }
+            }
+        }
+
+        [Command("timetable")]
+        public async Task Timetable(string user,string task) {
+            if (Database.studentdatabase.ContainsKey(user)) {
+                await Context.Channel.SendMessageAsync("User does not exist.");
+            }
+            if (task == "show") {
+
             }
         }
     }

@@ -145,6 +145,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="nonstatic-classes\Students.cs" />
+    <Compile Include="nonstatic-classes\TimeTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

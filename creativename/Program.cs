@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace GamingGod {
     class Program {
         static void Main(string[] args) {
-            Console.WriteLine(File.ReadAllText("DiscordToken.txt"));
+            var x = new TimeTable();
+            Console.WriteLine(x.Print());
             new Thread(new ThreadStart(DiscordBot.Connect().GetAwaiter().GetResult));
             Console.ReadLine();
         }
