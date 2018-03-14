@@ -13,9 +13,6 @@ namespace GamingGod {
     class DiscordHook {
         public static ISocketMessageChannel channel;
 
-        public static void Confirmation(ConfirmationProcess c, SocketCommandContext context) {
-
-        }
     }
     #region DiscordBot
     public static class DiscordBot {
@@ -57,9 +54,7 @@ namespace GamingGod {
             int argPos = 0;
             if (msg.HasStringPrefix(prefix, ref argPos)) {
                 var result = await _service.ExecuteAsync(context, argPos);
-                if (!result.IsSuccess) {
-                    await context.Channel.SendMessageAsync(result.ErrorReason);
-                }
+                if (!result.IsSuccess) await context.Channel.SendMessageAsync(result.ErrorReason);
             }
         }
     }

@@ -19,12 +19,12 @@ namespace GamingGod {
         }
 
         public string Print() {
-            string y = "-";
+            string y = "------";
             string x = "";
             for (int j = 0; j < 8; j++) {
-                x += "\n| ";
+                x += "\n" + (j + 1) + ".)" + " | ";
                 for (int i = 0; i < 5; i++) {
-                    x += timetable[j, i].Name + " | ";
+                    x += " " + timetable[j, i].Name + " |";
                     if(j == 0) y += "---------";
                 }
             }

@@ -37,9 +37,7 @@ namespace GamingGod {
 
         [Command("adduser")]
         public async Task AddUser(string name) {
-            if (Database.studentdatabase.ContainsKey(name)) {
-                await Context.Channel.SendMessageAsync("User does already exist.");
-            }
+            if (Database.studentdatabase.ContainsKey(name)) await Context.Channel.SendMessageAsync("User does already exist.");
             else {
                 var x = new Students {
                     name = name
@@ -51,9 +49,7 @@ namespace GamingGod {
 
         [Command("deleteuser")]
         public async Task DeleteUser(string name) {
-            if (!Database.studentdatabase.ContainsKey(name)) {
-                await Context.Channel.SendMessageAsync("User does not exist.");
-            }
+            if (!Database.studentdatabase.ContainsKey(name)) await Context.Channel.SendMessageAsync("User does not exist.");
             else {
                 if (Database.studentdatabase[name].CommandCreated) {
                     var x = new Random();
@@ -68,9 +64,7 @@ namespace GamingGod {
                     await Context.Channel.SendMessageAsync("Are you sure to delete this user ?");
                     await Context.Channel.SendMessageAsync("Type : `" + CommandHandler.prefix + "confirm" + rng + "` or `exit` to exit deletion.");
                 }
-                else {
-                    await Context.Channel.SendMessageAsync("Cannot delete users that are not created via `" + CommandHandler.prefix + "adduser` with`" + CommandHandler.prefix + "`deleteuser");
-                }
+                else await Context.Channel.SendMessageAsync("Cannot delete users that are not created via `" + CommandHandler.prefix + "adduser` with`" + CommandHandler.prefix + "`deleteuser");
             }
         }
 
@@ -95,13 +89,9 @@ namespace GamingGod {
         }
 
         [Command("timetable")]
-        public async Task Timetable(string user,string task) {
-            if (Database.studentdatabase.ContainsKey(user)) {
-                await Context.Channel.SendMessageAsync("User does not exist.");
-            }
-            if (task == "show") {
-
-            }
+        public async Task Timetable(string task,string user) {
+            if (!Database.studentdatabase.ContainsKey(user)) await Context.Channel.SendMessageAsync("User does not exist.");
+            if (task == "show") await Context.Channel.SendMessageAsync("`" + Database.studentdatabase[user].timetable.Print() + "`");
         }
     }
 }
