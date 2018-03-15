@@ -40,13 +40,23 @@ namespace GamingGod {
             if (Database.studentdatabase.ContainsKey(name)) await Context.Channel.SendMessageAsync("User does already exist.");
             else {
                 var x = new Students {
-                    name = name
+                    name = name,
+                    discordID = Context.User.Id
                 };
                 Database.studentdatabase.Add(name, x);
                 await Context.Channel.SendMessageAsync("User : `" + name + "` created.");
             }
         }
-
+        
+        [Command("converttodiscorduser")]
+        public async Task ConvertToDiscordUser (string name){ 
+            if (!Database.studentdatabase.ContainsKey(name)) await Context.Channel.SendMessageAsync("User does not exist.");
+            else {
+                Database.studentdatabse[name].discordID = Context.User.Id;
+                await Context.Channel.SendMessageAsync("conversion complete.");
+            }
+        }
+        
         [Command("deleteuser")]
         public async Task DeleteUser(string name) {
             if (!Database.studentdatabase.ContainsKey(name)) await Context.Channel.SendMessageAsync("User does not exist.");
@@ -84,7 +94,7 @@ namespace GamingGod {
                             await Context.Channel.SendMessageAsync("Deletion abborted.");
                         }
                     }
-                }
+               }
             }
         }
 
