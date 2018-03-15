@@ -41,8 +41,8 @@ namespace GamingGod {
         public string Name {
             get {
                 var x = subject;
-                if (subject.Length == 3) x += " ";
-                else x += "  ";
+                if (subject.Length == 2) x += " ";
+                if (teacher.Length == 2) x += " ";
                 x += teacher;
                 return x;
             }
