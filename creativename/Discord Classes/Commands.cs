@@ -21,9 +21,11 @@ namespace GamingGod {
             embed.Description = "test";
             await Context.Channel.SendMessageAsync("", false, embed);
             //need to work on
+            //DONT FORGET THIS!!!
+            //i'll probably forget this tho :(
         }
 
-        [Command("thischannel")]
+        [Command("thischannel")]//prints out free lessons in this channel
         public async Task Thischannel() {
             DiscordHook.channel = Context.Channel;
             await Context.Channel.SendMessageAsync("Aye Aye Captain!");
@@ -39,9 +41,8 @@ namespace GamingGod {
         public async Task AddUser(string name) {
             if (Database.studentdatabase.ContainsKey(name)) await Context.Channel.SendMessageAsync("User does already exist.");
             else {
-                var x = new Students {
-                    name = name,
-                    discordID = Context.User.Id
+                var x = new Students(name) {
+                    discordID = (long)Context.User.Id
                 };
                 Database.studentdatabase.Add(name, x);
                 await Context.Channel.SendMessageAsync("User : `" + name + "` created.");
@@ -49,10 +50,10 @@ namespace GamingGod {
         }
         
         [Command("converttodiscorduser")]
-        public async Task ConvertToDiscordUser (string name){ 
+        public async Task ConvertToDiscordUser (string name){
             if (!Database.studentdatabase.ContainsKey(name)) await Context.Channel.SendMessageAsync("User does not exist.");
             else {
-                Database.studentdatabse[name].discordID = Context.User.Id;
+                Database.studentdatabase[name].discordID = (long)Context.User.Id;
                 await Context.Channel.SendMessageAsync("conversion complete.");
             }
         }
@@ -102,6 +103,13 @@ namespace GamingGod {
         public async Task Timetable(string task,string user) {
             if (!Database.studentdatabase.ContainsKey(user)) await Context.Channel.SendMessageAsync("User does not exist.");
             if (task == "show") await Context.Channel.SendMessageAsync("`" + Database.studentdatabase[user].timetable.Print() + "`");
+        }
+
+        [Command("sendpm")]
+        public async Task Sendpm() {
+            //await Context.User.SendMessageAsync("test");
+           var x = await Context.User.GetOrCreateDMChannelAsync();
+            await x.SendMessageAsync("test");
         }
     }
 }

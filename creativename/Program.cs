@@ -11,6 +11,7 @@ namespace GamingGod {
         static void Main(string[] args) {
             var x = new TimeTable();
             Console.WriteLine(x.Print());
+            Config.ConfigMain();
             new Thread(new ThreadStart(DiscordBot.Connect().GetAwaiter().GetResult));
             Console.ReadLine();
         }

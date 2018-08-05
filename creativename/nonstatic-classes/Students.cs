@@ -6,14 +6,25 @@ using System.Threading.Tasks;
 
 namespace GamingGod {
     public class Students {
+        public string grade;
         public string name = "";
-        public string email = "";
+        public long discordID = 0;
         public string discordtag = "";
-        public ulong discordID = 0;
-        public List<string> subjects;
         public TimeTable timetable = new TimeTable();
         public bool CommandCreated {
-            get => discordID == 0;
+            get => discordID == 1;
+        }
+
+        public Students(string word) {
+            name = word;
+        }
+
+        public void FillInfo(string[] stringarray) {
+            grade = stringarray[6];
+            if(stringarray[7] != "") discordID = Int64.Parse(stringarray[7]); //don't want to cause exceptions
+            discordtag = stringarray[8];
+            //stringarray[9];
+            timetable.FillTimeTable(stringarray);
         }
     }
 }

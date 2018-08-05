@@ -138,6 +138,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
     <Compile Include="Discord Classes\Commands.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="nonstatic-classes\ConfirmationProcess.cs" />

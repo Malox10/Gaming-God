@@ -24,7 +24,7 @@ namespace GamingGod {
                 WebSocketProvider = Discord.Net.Providers.WS4Net.WS4NetProvider.Instance
             });
             _handler = new CommandHandler(_client);
-            await _client.LoginAsync(TokenType.Bot, File.ReadAllText("DiscordToken.txt"));
+            await _client.LoginAsync(TokenType.Bot, File.ReadAllLines(Config.configpath)[1]);//second line of config.txt
             await _client.StartAsync();
             await Task.Delay(-1);
         }
