@@ -10,6 +10,40 @@ namespace GamingGod {
         public string[] text;
         public string discordtoken;
 
+        /// <summary>
+        /// The Config  works in the following way:
+        /// 
+        /// The discord token is stored in its first line
+        /// Each Entry starts with a number in brackets followed by the users timetable i.e
+        /// 
+        /// [88492837499832748458]
+        /// DE.EFC.3.A001:BEF.DF.3.B001
+        /// DE.EFC.3.A001:BEF.DF.3.B001
+        /// DE.EFC.3.A001:BEF.DF.3.B001
+        /// DE.EFC.3.A001:BEF.DF.3.B001
+        /// DE.EFC.3.A001:BEF.DF.3.B001
+        /// 
+        /// one line represents one day Every lesson block is seperated by ':' 
+        /// and the information in each lesson block is seperated by '.'
+        /// The first row would mean the following :
+        ///  We have 2 lesson blocks :
+        ///  DE.EFC.3.A001
+        ///  BEF.DF.3.B001
+        ///  the first two characters represent your subject
+        ///  in this case DE and BE. the abbreviations are just random in this example
+        ///  
+        ///  EF and DF represent the abbreviation of the teacher 
+        ///  
+        ///  The third info is always a single digit and represents the number of lessons 
+        ///  that are after each other. So both lessons block consist of 3 lessons after another
+        ///  
+        ///  And the last entry is the abbreviation for the room in this case A001 and B001.
+        ///  
+        /// What this entry would tell you that every day of the week you have your first three 
+        /// lessons in room A001 with the teacher EFC in subject DE and the next three lessons
+        /// in room B001 with teacher DF in the subject BEF
+        /// </summary>
+
         public Database() {
             if (!File.Exists(configpath)) {
                 File.Create(configpath);
