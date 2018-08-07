@@ -6,7 +6,7 @@ namespace GamingGod {
     public class Database {
         public Dictionary<long, Student> students = new Dictionary<long, Student>();
         public const string configpath = "StundenplanConfig.txt";  //to make things less cluttered
-        private const int configlength = 10; //so i can change the length easier but it's a bit of a hassle because you need to manually change the config for now
+        private const int configlength = 6; //so i can change the length easier but it's a bit of a hassle because you need to manually change the config for now
         public string[] text;
         public string discordtoken;
 
@@ -29,13 +29,13 @@ namespace GamingGod {
         ///  We have 2 lesson blocks :
         ///  DE.EFC.3.A001
         ///  BEF.DF.3.B001
-        ///  the first two characters represent your subject
-        ///  in this case DE and BE. the abbreviations are just random in this example
+        ///  the first set of characters represent your subject
+        ///  in this case DE and BEF. the abbreviations are just random in this example
         ///  
-        ///  EF and DF represent the abbreviation of the teacher 
+        ///  EFC and DF represent the abbreviation of the teacher 
         ///  
         ///  The third info is always a single digit and represents the number of lessons 
-        ///  that are after each other. So both lessons block consist of 3 lessons after another
+        ///  that are after each other. So both lesson blocks consist of 3 lessons after another
         ///  
         ///  And the last entry is the abbreviation for the room in this case A001 and B001.
         ///  
